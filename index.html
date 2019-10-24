@@ -1,12 +1,59 @@
 <!DOCTYPE html>
-<html lang="en">
+<html lang="jp">
 <head>
   <meta charset="UTF-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <meta http-equiv="X-UA-Compatible" content="ie=edge">
-  <title>Document</title>
+  <title>順番決めアプリ</title>
+  <style>
+    * {
+      list-style:  none; 
+    }
+  .flip-list-move {
+    transition: transform .5s;
+  }
+  </style>
 </head>
 <body>
-  start
+<div id="app">
+
+<p>
+  <input type="text" placeholder="名前を入力してください！" v-model="newItemTitle" v-on:keyup.enter="addTodo">
+</p>
+
+<transition-group name="flip-list" tag="ul">
+  <li v-for="item in items" v-bind:key="item.title">
+{{ item.title }}
+  </li>
+</transition-group>
+
+
+<button v-on:click="shuffle">シャッフル</button>
+</div> 
+ 
+ 
+<script src="https://cdn.jsdelivr.net/npm/vue/dist/vue.js"></script>
+<script src="https://cdn.jsdelivr.net/npm/lodash@4.17.15/lodash.min.js"></script>
+<script>
+
+const vm = new Vue({
+  el: "#app",
+  data: {
+    items: [
+    ],
+    newItemTitle: ''
+  },
+  methods: {
+    addTodo: function (newItemTitle) {
+      this.items.push({
+        title: this.newItemTitle
+      });
+      this.newItemTitle = '';
+    },
+    shuffle: function (e) {
+      this.items = _.shuffle(this.items);
+    }
+    
+  }
+});
+</script>
 </body>
 </html>
