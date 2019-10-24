@@ -1,0 +1,78 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <title>Todo</title>
+  <style>
+  .done {
+    text-decoration: line-through;
+  }
+  </style>
+</head>
+<body>
+
+<div id="app">
+<p>
+  <input type="text" placeholder="名前を入力しましょう！" v-model="newItemTitle" v-on:keyup.enter="addTodo">
+</p>
+<ul>
+  <li v-for="item in items">
+    <label v-bind:class="{ done: item.isChecked }">
+      <input type="checkbox" v-model="item.isChecked">{{ item.title }}
+    </label>
+  </li>
+
+  <button v-on:click="deleteTodo()">チェック済みの項目を削除する</button>
+</ul>
+</div> 
+ 
+ 
+<script src="https://cdn.jsdelivr.net/npm/vue/dist/vue.js"></script>
+<script>
+
+const vm = new Vue({
+  el: "#app",
+  data: {
+    items: [
+    { title: '領収書を準備する', isChecked: false },
+        { title: 'Vue.jsハンズオンの資料を作る', isChecked: false },
+        { title: '参加者の人数を確認する', isChecked: false },
+        { title: 'ピザを注文する', isChecked: false },
+        { title: '参加費のお釣りを準備する', isChecked: false },
+        { title: '会場設営をする', isChecked: false },
+    ],
+    newItemTitle: ''
+  },
+  methods: {
+    addTodo: function(newItemTitle) {
+      this.items.push({
+        title: this.newItemTitle,
+        isChecked: false
+      });
+      this.newItemTitle = '';
+      this.saveTodo(); //ブラウザに保存
+    },
+    deleteTodo: function(){
+      this.items = this.items.filter(function (item) {
+        return item.isChecked === false;
+      });
+      this.saveTodo(); //ブラウザに保存
+    },
+    saveTodo: function() {
+      localStorage.setItem('items', JSON.stringify(this.items));
+    },
+    loadTodo: function(){
+      this.items = JSON.parse( localStorage.getItem('items') );
+      if( !this.items ){
+        this.items = [];
+      }
+    },
+    mounted: function(){
+      this.loadTodo();
+  },
+    
+  }
+});
+</script>
+</body>
+</html>
