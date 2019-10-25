@@ -1,0 +1,61 @@
+* {
+  list-style:  none; 
+}
+
+body {
+  background: #FFDBC9
+}
+
+
+h1{
+  text-align: center;
+}
+
+
+.container {
+  width: 20em;
+  margin: 50px auto;
+}
+
+input {
+  width: 300px;
+  height: 40px;
+  border-radius: 0.5em;
+  font-size: 1.2em;
+
+}
+
+ul {
+  padding: 0;
+  text-align: center;
+  font-size: 1.2em;
+  color: #434c61;
+}
+
+
+.button-container {
+  text-align:center;
+}
+
+.btn-square {
+  width: 10em;
+  height: 4em;
+  font-size: 0.7em;
+  display: inline-block;
+  text-decoration: none;
+  background: #668ad8;
+  color: #FFF;
+  border-bottom: solid 4px #627295;
+  border-radius: 5px;
+  cursor: pointer;
+}
+.btn-square:active {
+  /*ボタンを押したとき*/
+  -webkit-transform: translateY(4px);
+  transform: translateY(4px);/*下に動く*/
+  border-bottom: none;/*線を消す*/
+}
+
+.flip-list-move {
+  transition: transform .5s;
+  }

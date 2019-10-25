@@ -3,17 +3,17 @@
 <head>
   <meta charset="UTF-8">
   <title>順番決めアプリ</title>
-  <style>
-    * {
-      list-style:  none; 
-    }
-  .flip-list-move {
-    transition: transform .5s;
-  }
-  </style>
+  <link rel="stylesheet" href="style.css">  
 </head>
 <body>
+
+<div>
+  <h1>順番決めアプリ</h1>
+</div>
+
 <div id="app">
+
+<div class="container">
 
 <p>
   <input type="text" placeholder="名前を入力してください！" v-model="newItemTitle" v-on:keyup.enter="addTodo">
@@ -26,7 +26,8 @@
 </transition-group>
 
 
-<button v-on:click="shuffle">シャッフル</button>
+<div class="button-container"><button class="btn-square" v-on:click="shuffle">シャッフル</button></div>
+</div>
 </div> 
  
  
